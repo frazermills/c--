@@ -1,4 +1,5 @@
 #include <terminal.h>
+#include <math.h>
 
 void init(){
     winmain = initscr();
@@ -8,6 +9,8 @@ void init(){
     maxLines = row;
     insert = true;
     frame = 0;
+    leftPad = 8;
+    xPos = leftPad;
     refresh();
 
     start_color();
@@ -17,7 +20,9 @@ void init(){
     init_pair(1, OFFWIHTE, BLACK);
     wbkgd(winmain, COLOR_PAIR(1));
 
-    nodelay(winmain, 1);
+    //nodelay(winmain, 1);
+    attron(A_BOLD);
+    //attron(A_STANDOUT);
 
     initscr();
     noecho();
@@ -52,9 +57,7 @@ std::vector<int> PadLine(std::vector<int> text){
     for(char cha : s){
         text.push_back(cha);
     }
-    for(int i = 0; i < 2; i++){
-        text.push_back(' ');
-    }
+    text.push_back('\t');
     text.push_back(0);
 
     return text;
@@ -67,20 +70,21 @@ std::vector<int> HandleInput(std::vector<int> text, int c){
 
     if(c == '`'){
         insert = !insert;
-        printw("Changed modes %d", insert);
-        getch();
     }
     else if(insert){
         if((c == 127) || (c == 263)){
-            if(text.size() > 5){
+            if(text.size() > 3 + floor(line / 10)){
                 if(text.back() == 0){
                     while (text.back() != 10)
                     {
                         text.pop_back();
+                        xPos--;
                     }
                     line -= 10;
+                    yPos--;
                 }
                 text.pop_back();
+                xPos--;
             }
         }
         else if (c == 16)
@@ -98,42 +102,47 @@ std::vector<int> HandleInput(std::vector<int> text, int c){
             text.push_back(c);
 
             text = PadLine(text);
+            yPos += 1;
+            xPos = 8;
 
         }else if(c == '\t'){
             for(int i = 0; i < 2; i++){
                 text.push_back(' ');
             }
+            xPos+=2;
         }
         else{
             if((c > 96) && (c < 123))
-                text.push_back(c - 32);
+                text.push_back(c);
             else
                 text.push_back(c);
+            xPos++;
         }
     }else{
-        int x,y;
-        getyx(winmain, x, y);
-        wprintw(winmain, "%d %d" , y,x);
         switch (c)
         {
+        case 'h':
+            xPos--;
+            break;
         case 'j':
-            x--;
+            yPos++;
             break;
         case 'k':
-            x++;
+            yPos--;
             break;
         case 'l':
-            y++;
-            break;
-        case ';':
-            y--;
+            xPos++;
             break;
         default:
             break;
         }
-        wprintw(winmain, "%d %d" , y,x);
-        wmove(winmain, 0, 0);
-        wrefresh(winmain);
+        
+        if(xPos < leftPad)
+            xPos = leftPad;
+        if(yPos <= 0)
+            yPos = 0;
+        if(yPos >= (line / 10) - 1)
+            yPos = (line / 10) - 1;
     }
 
     return text;
@@ -165,11 +174,14 @@ int main(int argc, char ** argv)
                     newLines++;
             }else{
 
+                // screen jitter of beacause its a pain
+                /*
                 if((frame % 100 == 0) && linesPrinted == 0){
                     if(c == 10 || charCount == 0){
-                        wprintw(winmain, "\n");
+                        //wprintw(winmain, "\n");
                     }
                 }
+                */
                 if(c == 10)
                     linesPrinted++;
 
@@ -178,6 +190,11 @@ int main(int argc, char ** argv)
             charCount++;
         }
 
+        wmove(winmain, yPos, xPos);
+        wrefresh(winmain);
+
+        if(frame > 10000)
+            frame /= 100;
         currentChar = wgetch(winmain);
         text = HandleInput(text, currentChar);
     }

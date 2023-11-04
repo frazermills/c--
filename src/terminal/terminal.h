@@ -7,9 +7,12 @@
 
 WINDOW *winmain;
 int xPos;
+int yPos;
 int line;
 int maxLines;
 int frame;
+int leftPad;
+int charactorPos;
 bool insert;
 
 #define BLACK   9
