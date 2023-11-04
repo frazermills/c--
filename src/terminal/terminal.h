@@ -6,3 +6,5 @@
 #include <fstream> 
 
 WINDOW *winmain;
+int xPos;
+int line;
