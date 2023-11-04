@@ -17,28 +17,169 @@ also:
 
 examples: how should it look?
 
-if (condition)
+
+
+declaring variables:
+
+datatype variable; 
+    int name;
+        int name = value;
+    float name;
+        float name = value;
+    char name;
+        char name = 'value';
+    string name;
+        string name = "value";
+
+
+if statements (might need brackets)
+
+
+if condition { }
+elif condition{ }
+else { }
+
+example
+    int x = 10
+    int y = 5
+    if x - y == 5
+    {
+        out(5)
+    }
+    else
+    {
+        out("not 5")
+    }
+
+
+
+
+
+print statmements:
+
+out("hello world")
+
+with variables
+    string world = "world"
+    out("hello", world)
+
+with new line \n
+    out("hello world \n")
+
+
+    out("hello world")
+
+
+loops (only using for)
+
+loop for condition { }
+e.g. 
+    loop for (int i = 0; i < 10; i++)
+    {
+        out("i is ", i)
+    }
+
+
+
+functions
+
+datatype func functionname(args)
 {
-    statement;
-}
-else if (condition)
-{
-    statement;
-}
-else
-{
-    statement;
+    return returnvalue;
 }
 
-for (int i, i < 5, i++)
-{
-    statement;
+example 
+int func main () {
+    ; cool stuff
+    return 0;
 }
 
-auto array = {1, 2, 3, 4};
 
-function name (args)
-{
-statements;
-return return_value;
-}
+
+calling function (probably not having declarations, see if we have time at the end)
+
+functionname(data type, args);
+e.g.
+    add(int num1, int);
+
+
+
+
+goto statements (if this doesnt work can just use 'jump')
+
+jump-goto label;
+label:
+    // statements
+
+
+if condition {
+    jump-goto one }
+else {
+    jump-goto two  }
+
+one:
+    out("one")
+two:
+    out("two")
+
+
+
+
+break statement (if this doesn't work just 'break')
+jump-break;
+
+
+continue statmement
+jump-continue;
+
+
+
+
+
+operations
+    + add
+    ++ incrament
+    - subtract
+    -- decrement
+    = equals
+    == equilivent 
+    / divide
+    \\ modulus
+    * multiplication
+
+
+assignment operators
+    = equals
+        a = b
+    += add 
+        a += b      ==  a = a + b
+    -= subtract 
+        a -= b      ==  a = a - b
+   -= multiply 
+        a *= b      ==  a = a * b  
+     /= divide       
+        a /= b      ==  a = a / b   
+    \\= modulus
+        a \\= b     == a = a \\ b
+
+
+relational operators
+    << less than
+        a << b
+    >> more than 
+        a >> b
+    != not equal
+        a != b
+    >>= greater than or equal to
+        a >>= b
+    <<= less than or equal to  
+        a <<= b
+
+
+logical operators (self-explanatory)
+    and 
+        a >> 0 and b >> 0
+    or
+        a >> 0 or b >> 0
+    not 
+        not a

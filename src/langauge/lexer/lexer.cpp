@@ -138,7 +138,7 @@ Token NextToken(const std::string& input) {
 }
 
 int main() {
-    std::string input = "let x = 42;";
+    std::string input = "fn test (int a, char c);";
     Token tok;
     
     do {
