@@ -83,13 +83,13 @@ e.g.
 
 functions
 
-datatype func functionname(args)
+datatype function functionname(args)
 {
     return returnvalue;
 }
 
 example 
-int func main () {
+int function main () {
     ; cool stuff
     return 0;
 }
