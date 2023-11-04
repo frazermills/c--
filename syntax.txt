@@ -183,10 +183,4 @@ logical operators (self-explanatory)
         a >> 0 or b >> 0
     not 
         not a
-
-
-
-input
-
-datatype name input()
-    int num input("Enter a Number:" )
+        
