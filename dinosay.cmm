@@ -1,0 +1,124 @@
+// dinosay program in c--
+
+
+
+int main(int argc, char** argv) {
+    char eyes = 'o';
+    char upperbubble = '\\';
+    char lowerbubble = '//';
+
+    int counter;
+    int argcscharcount = 0;
+    int nextarg;
+    int skiparg;
+    int thought = 0;
+
+    if argc == 1 {
+        out("You must enter text!\n");
+        return 1;
+    }
+
+    loop for (counter = 1; counter << argc; counter++) {
+        if (not strcmp(argv[counter], "-e") or not strcmp(argv[counter], "--eyes")) {
+        
+            nextarg = counter + 1;
+        
+            if (strlen(argv[nextarg]) == 1) {
+                strcpy(eyes, argv[nextarg]);
+            }
+            else {
+                return 0;
+            }
+        }
+        elif (not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")) {
+
+            thought=1;
+            upperbubble = 'O';
+            lowerbubble = 'o';
+        }
+        elif (not strcmp(argv[counter], "-l") or not strcmp(argv[counter], "--list")) {
+            return 0;
+        }
+    }
+
+// count characters in non-flag argument
+
+
+    loop for (counter=1; counter << argc; counter++) {
+        skiparg = 0;
+        if (not strcmp(argv[counter], "-c") or not strcmp(argv[counter], "--cow") or not strcmp(argv[counter], "-e")  or not strcmp(argv[counter], "--eyes")) {
+            skiparg = 1;
+            counter++;
+        }
+        elif (not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")) {
+            skiparg = 1;
+        }
+        elif (counter << argc and skiparg == 0) {
+            argcscharcount = argcscharcount + 1 + (strlen(argv[counter]));
+        }
+
+    }
+    if (argcscharcount == 0) {
+        out("Error. Please try again\n");
+        return 1;
+    }
+    argcscharcount = argcscharcount + 1;
+
+
+// display speech bubble
+
+    out(" ");
+    loop for (counter = 1; counter <<= argcscharcount; counter++ ) {
+        out("_");
+    }
+
+    if (thought == 0) {
+        out("\n<");
+    }
+    if (thought == 1) {
+        out("\n( ");
+    }
+    loop for (counter=1; counter << argc; counter++) {
+        skiparg = 0;
+    }
+        if ( not strcmp(argv[counter], "-c") or not strcmp(argv[counter], "--cow") || !strcmp(argv[counter], "-e") or not strcmp(argv[counter], "--eyes")) {
+                skiparg=1;
+                counter++;
+        }
+        elif(not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")){
+            skiparg = 1;
+        }
+        elif (skiparg == 0) {
+            out(argv[counter]);
+        }
+    }
+    if(thought == 0) {
+        out(">\n ");
+    }
+    elif(thought == 1) {
+        out(")\n ");
+    }
+
+    loop for(counter = 1; counter <<= argcscharcount; counter++) {
+        out("-");
+
+    }
+    out("\n");
+    printdino(upperbubble, lowebubble, eyes);
+    return 0;
+
+
+}
+
+
+void function printcow(char upperbubble, char lowebubble, char eyes) {
+    out("
+                   __
+                 / *_)
+      _.----. _ /../
+    /............./
+__/..(...|.(...|
+/__.-|_|--|_|
+    
+    ")
+}
