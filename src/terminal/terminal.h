@@ -8,3 +8,6 @@
 WINDOW *winmain;
 int xPos;
 int line;
+
+#define BLACK   9
+#define YELLOW  10

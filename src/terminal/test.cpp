@@ -5,6 +5,12 @@ void init(){
     line = 10;
     refresh();
 
+    start_color();
+    init_color(9, 100, 100, 100);
+    init_color(10, 240*4, 226*4, 123*4);
+    init_pair(1, YELLOW, BLACK);
+    wbkgd(winmain, COLOR_PAIR(1));
+
     initscr();
     noecho();
     keypad(winmain, TRUE);
@@ -17,8 +23,14 @@ void CleanUp(){
 void SaveToFile(std::vector<int> text){
     std::ofstream File("code.txt");
     
+    int index = 0;
     for (char c : text){
-        File << c;
+        // check if before or after line count
+        if(c == 10)
+            index = 0;
+        if(index > 3)
+            File << c;
+        index++;
     }
     File.close();
 }
@@ -35,19 +47,15 @@ std::vector<int> PadLine(std::vector<int> text){
 }
 
 std::vector<int> HandleInput(std::vector<int> text, int c){
+    // TODO: make not physicaly painful to look at
     if((c == 127) || (c == 263)){
         if(text.size() > 4){
             if(text.back() == 0){
-                while (true)
+                while (text.back() != 10)
                 {
-                    if(text.back() == 10){
-                        line -= 10;
-                        break;
-                    }
-                    if(text.size() > 8)
-                        text.pop_back();
+                    text.pop_back();
                 }
-                
+                line -= 10;
             }
             text.pop_back();
         }
@@ -60,15 +68,23 @@ std::vector<int> HandleInput(std::vector<int> text, int c){
         getch();
         wclear(winmain);
     }else if(c == 10){
-        line += 10;
-        text.push_back(c);
+        int row,col;
+        getmaxyx(winmain, row, col);
 
-        text = PadLine(text);
+        if((row * 10) > line){
+            line += 10;
+            text.push_back(c);
 
-        // Move cursor
+            text = PadLine(text);
+        }
+
     }
-    else
-        text.push_back(c);
+    else{
+        if((c > 96) && (c < 123))
+            text.push_back(c - 32);
+        else
+            text.push_back(c);
+    }
 
     return text;
 }
