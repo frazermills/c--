@@ -2,7 +2,40 @@
 #define TOKEN_H_
 
 #include <string>
-#include <map>
+#include <unordered_map>
+
+using TokenType = std::string;
+
+// Define constants for token types
+const TokenType ILLEGAL = "ILLEGAL";
+const TokenType EOF_TOKEN = "EOF";
+const TokenType IDENT = "IDENT";
+const TokenType INT = "INT";
+const TokenType ASSIGN = "=";
+const TokenType PLUS = "+";
+const TokenType MINUS = "-";
+const TokenType BANG = "!";
+const TokenType ASTERISK = "*";
+const TokenType SLASH = "/";
+const TokenType LT = "<";
+const TokenType GT = ">";
+const TokenType EQ = "==";
+const TokenType NOT_EQ = "!=";
+const TokenType COMMA = ",";
+const TokenType SEMICOLON = ";";
+const TokenType LPAREN = "(";
+const TokenType RPAREN = ")";
+const TokenType LBRACE = "{";
+const TokenType RBRACE = "}";
+const TokenType FUNCTION = "FUNCTION";
+const TokenType LET = "LET";
+const TokenType TRUE = "TRUE";
+const TokenType FALSE = "FALSE";
+const TokenType IF = "IF";
+const TokenType ELSE = "ELSE";
+const TokenType RETURN = "RETURN";
+
+
 
 typedef std::string TokenType;
 
@@ -12,58 +45,6 @@ struct Token
 {
     TokenType Type;
     std::string Literal;
-};
-
-// these are all placeholder tokens, nicola you can change these
-const std::string ILLEGAL = "ILLEGAL";
-const std::string _EOF = "EOF";
-
-const std::string IDENT = "IDENT";
-
-// literals
-const std::string INT = "INT";
-
-// operators
-const std::string ASSIGN = "=";
-const std::string PLUS = "+";
-const std::string MINUS = "-";
-const std::string EXCLIMATION = "!";
-const std::string ASTERISK = "*";
-const std::string FWSLASH = "/";
-
-const std::string LT = "<";
-const std::string GT = ">";
-
-const std::string EQ = "==";
-const std::string NEQ = "==";
-
-const std::string COMMA = ",";
-const std::string SEMICOLON = ";";
-
-const std::string LBRACK = "(";
-const std::string RBRACK = ")";
-const std::string LBRACE = "{";
-const std::string RBRACE = "}";
-
-// keywords
-const std::string FUNCTION = "FUNCTION";
-const std::string VAR = "VAR";
-const std::string _TRUE = "TRUE";
-const std::string _FALSE = "FALSE";
-const std::string IF = "IF";
-const std::string ELSE = "ELSE";
-const std::string RETURN = "RETURN";
-
-
-std::map<std::string, TokenType> keywords =
-{
-    {"function", FUNCTION},
-    {"var", VAR},
-	{"true", _TRUE},
-	{"false", _FALSE},
-	{"if", IF},
-	{"else", ELSE},
-	{"return", RETURN}
 };
 
 #endif // TOKEN_H_
