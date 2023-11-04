@@ -1,4 +1,3 @@
-#include <string>
 #include "token.h"
 
 TokenType lookup_ident (std::string ident)

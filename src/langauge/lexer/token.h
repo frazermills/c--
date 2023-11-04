@@ -1,18 +1,18 @@
-#include <string>
-#include <map>
-
 #ifndef TOKEN_H_
 #define TOKEN_H_
+
+#include <string>
+#include <map>
 
 typedef std::string TokenType;
 
 TokenType lookup_ident(std::string);
 
-struct
+struct Token
 {
-		TokenType Type;
-			std::string Literal;
-} Token;
+    TokenType Type;
+    std::string Literal;
+};
 
 // these are all placeholder tokens, nicola you can change these
 const std::string ILLEGAL = "ILLEGAL";
@@ -24,7 +24,7 @@ const std::string IDENT = "IDENT";
 const std::string INT = "INT";
 
 // operators
-const std::string ASSGIN = "=";
+const std::string ASSIGN = "=";
 const std::string PLUS = "+";
 const std::string MINUS = "-";
 const std::string EXCLIMATION = "!";
