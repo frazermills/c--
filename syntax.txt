@@ -13,3 +13,32 @@ also:
 
  - 'built in' functions that will map to some c ones from stdio, stdlib etc  (i.e. if we have a 'print' it will map to 'printf' and have the same behaviour as that)
     given a large part of the program will the be repl environment thing, it will be quicker and easier to write it as an interpreter
+
+
+examples: how should it look?
+
+if (condition)
+{
+    statement;
+}
+else if (condition)
+{
+    statement;
+}
+else
+{
+    statement;
+}
+
+for (int i, i < 5, i++)
+{
+    statement;
+}
+
+auto array = {1, 2, 3, 4};
+
+function name (args)
+{
+statements;
+return return_value;
+}
