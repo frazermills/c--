@@ -1,0 +1,76 @@
+// a test file to test the syntax of c--
+
+
+
+
+
+int main (){
+
+// testing that the variables are assigned properly
+
+    out("Commencing Varaible Tests /n");
+
+    int numTest = 1;
+    int i;      // for use in loop tests
+    int numTest2 = 2;
+    float floatTest = 1.5;
+    char charTest = 'H'
+    string stringTest = "Hello World!";
+
+// testing basic outputs of varaibles above, and strings, including new line
+
+
+    out("Num 1 is: \n", numTest); 
+    out("Num 2 is: \n", numTest2);
+    out("Float is: \n", floatTest);
+    out("A character is: \n", charTest);
+    out("A string is: \n, stringTest);
+    out("This is testing a string output");
+    out(stringTest);
+    out("Variable Tests Complete\n");
+    out("\n");
+    
+
+// testing if statements
+
+    out("Commencing if/elif/else")
+
+    if numTest == 1 {
+        out("numTest is 1\n");
+    }
+
+    if numTest2 - numTest 1 == 1 {
+        out("2 - 1 is one/n");
+    }
+
+    if numTest2 == 1 {
+        out("This should not output\n");
+    }
+    elif numTest == 2 {
+        out("numTest is 2\n");
+    }
+
+    if floatTest == 5 {
+        out("This should not output\n");
+    }
+    else {
+        out("floatTest is not 5/n");
+    }
+
+    out("If/elif/else Tests Complete\n")
+    out()
+
+
+// for loop testing
+
+    out("Commencing for loop tests\n");
+
+    loop for (i = 0; i << 10; i++) {
+        out("i is: ", i);
+    }
+    out("For Loop Testing Complete\n");
+    out("\n");
+
+}
+
+
