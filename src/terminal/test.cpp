@@ -48,7 +48,7 @@ void SaveToFile(std::array<std::array<int, 80>, 1000> text){
     for (auto charLine : text){
         for (char c : charLine){
             // check if before or after line count
-            if((index > 3 + ((lines+1) / 10)) && (c != '@') && (c != 0) && (c != '$'))
+            if((index > 5 + ((lines+1) / 10)) && (c != '@') && (c != 0) && (c != '$'))
                 File << c;
             index++;
         }
@@ -63,13 +63,54 @@ std::array<std::array<int, 80>, 1000> PadLine(std::array<std::array<int, 80>, 10
     for(char cha : s){
         text[yPos][xPos++] = cha;
     }
-    text[yPos][xPos] = '\t';
-    xPos += 4;
+    text[yPos][xPos++] = ' ';
+    text[yPos][xPos++] = ' ';
+    text[yPos][xPos++] = ' ';
+    text[yPos][xPos++] = ' ';
     text[yPos][xPos++] = '$';
-    xPos++;
 
     return text;
 }
+
+std::array<std::array<int, 80>, 1000> ZeroArray(std::array<std::array<int, 80>, 1000> arr){
+    for(int i = 0; i < 1000; i++){
+        for(int j = 0 ; j < 80; j++)
+            arr[i][j] = '@';
+    }
+
+    return arr;
+}
+std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1000> text){
+    text = ZeroArray(text);
+
+    std::string codeLine;
+
+    xPos = 0;
+    yPos = 0;
+    line = 1;
+
+    std::ifstream CodeFile("ex.txt");
+    while (getline(CodeFile, codeLine))
+    {
+        xPos = 0;
+        text = PadLine(text);
+
+        int charCount = 0;
+        for(auto c : codeLine){
+            text[yPos][xPos++] = c;
+        }   
+        text[yPos][xPos++] = '\n';
+
+        line++;
+        yPos++;
+    }
+    xPos = 0;
+    text = PadLine(text);
+    CodeFile.close();
+
+    return text;
+}
+
 
 std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>, 1000> text, int c){
     // TODO: make not physicaly painful to look at
@@ -85,12 +126,13 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
         {
             //Backspace
         case 263:
-            if(text[yPos][--lastX] == '$'){
+            if(text[yPos][lastX] == '$'){
                 if(yPos != 0){
                     for(int i = xPos; i >= 0; i--){
                         text[yPos][i] = '@';
                     }
                     yPos--;
+                    line--;
 
                     //find last char pos of new line
                     int lastIndex = 8;
@@ -112,6 +154,10 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             
             // more checks needed
             break;
+        case 12:
+            // open file
+            text = OpenFile(text);
+            break;
         case 16:
             wclear(winmain);
             printw("Saving file... Enter to continue");
@@ -122,7 +168,7 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
         case 10:
             line += 1;
             text[yPos++][xPos] = '\n';
-            xPos = 0;
+            xPos = 0;            
 
             text = PadLine(text);
             break;
@@ -172,11 +218,7 @@ int main(int argc, char **argv)
     int currentChar;
     std::array<std::array<int, 80>, 1000> text;
 
-    for(int i = 0; i < 1000; i++){
-        for(int j = 0 ; j < 80; j++)
-            text[i][j] = '@';
-    }
-
+    text = ZeroArray(text);
     text = PadLine(text);
 
     while(true){
@@ -186,19 +228,30 @@ int main(int argc, char **argv)
         wrefresh(winmain);
         wclear(winmain);
 
+
+        int row,col;
+        getmaxyx(winmain, row, col);
+        maxLines = row;
+
         int newLines = 0;
         int diff = line - maxLines;
         int linesPrinted = 0;
         int charCount = 0;
 
         for(auto charLine : text){
+
             for(int c : charLine){
+                if(diff > 0){
+                    diff--;
+                    break;
+                }
+
                 if(c != '@' && c != '$')
                     wprintw(winmain, "%c", c);
             }
         }
 
-        wmove(winmain, yPos, xPos);
+        wmove(winmain, yPos, xPos-1);
         wrefresh(winmain);
 
         currentChar = wgetch(winmain);
