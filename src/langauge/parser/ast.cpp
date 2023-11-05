@@ -137,7 +137,6 @@ struct Boolean : Expression {
     std::string TokenLiteral() override {
         return tok.Literal;
     }
-
     std::string String() {
         return tok.Literal;
     }

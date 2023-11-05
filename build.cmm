@@ -1,3 +1,7 @@
-function add(int x, int y){
-  return x + y;
+function cool_stuff(int x, char y, string name, bool check)
+{
+
+  x = 5;
+
+  out y;
 }
