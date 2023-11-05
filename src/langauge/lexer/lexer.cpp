@@ -136,15 +136,3 @@ Token NextToken(const std::string& input) {
     readChar();
     return tok;
 }
-
-int main() {
-    std::string input = "let x = 42;";
-    Token tok;
-    
-    do {
-        tok = NextToken(input);
-        std::cout << "Type: " << tok.Type << ", Literal: " << tok.Literal << std::endl;
-    } while (tok.Type != EOF_TOKEN);
-
-    return 0;
-}
