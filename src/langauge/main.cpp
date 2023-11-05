@@ -25,11 +25,15 @@ int main(int argc, char **argv) {
     std::string input = read_file(argv[1]);
   
     Token tok;
+    std::ofstream File("token.txt", std::ios::out| std::ios::binary);
 
     do {
         tok = NextToken(input);
         std::cout << "Type: " << tok.Type << ", Literal: " << tok.Literal << std::endl;
+        File << "Type: " << tok.Type << ", Literal: " << tok.Literal << std::endl;
     } while (tok.Type != EOF_TOKEN);
+
+    File.close();
 
     return 0;
 }
