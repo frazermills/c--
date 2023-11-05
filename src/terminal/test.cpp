@@ -27,9 +27,7 @@ void init(){
     init_pair(1, OFFWIHTE, BLACK);
     wbkgd(winmain, COLOR_PAIR(1));
 
-    //nodelay(winmain, 1);
     attron(A_BOLD);
-    //attron(A_STANDOUT);
 
     initscr();
     noecho();
@@ -142,6 +140,7 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
 
     if(c == '`'){
         firstJ = true;
+        firstk = true;
         insert = !insert;
     }
     else if(insert){
@@ -163,8 +162,6 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
                     for(char character : text[yPos]){
                         if(character != '@' && currentIndex > lastIndex){
                             lastIndex = currentIndex;
-                            //printw("%d", character);
-                            //getch();
                         }
 
                         currentIndex++;
@@ -212,12 +209,14 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             xPos--;
             break;
         case 'j':
-            yPos += 1;
             if(text[yPos][0] == '@'){
+                yPos--;
                 text[yPos++][xPos] = '\n';
                 line++;
                 xPos = 0;
                 text = PadLine(text);
+            }else{
+                yPos += 1;
             }
             firstJ = false;
             break;
@@ -261,6 +260,7 @@ int main(int argc, char **argv)
         int linesPrinted = 0;
         int charCount = 0;
 
+
         for(auto charLine : text){
 
             for(int c : charLine){
@@ -273,9 +273,8 @@ int main(int argc, char **argv)
                     wprintw(winmain, "%c", c);
             }
         }
-
         wmove(winmain, yPos, xPos-1);
-        wrefresh(winmain);
+
 
         currentChar = wgetch(winmain);
         text = HandleInput(text, currentChar);
