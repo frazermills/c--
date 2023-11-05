@@ -1,0 +1,24 @@
+#pragma once
+
+#include <ncurses.h>
+#include <iostream>
+#include <vector>
+#include <fstream> 
+
+WINDOW *winmain;
+int xPos;
+int yPos;
+int line;
+int maxLines;
+int frame;
+int leftPad;
+int charactorPos;
+int row,col;
+int MaxLineLength;
+bool insert;
+bool firstJ;
+bool firstk;
+
+#define BLACK   9
+#define YELLOW  10
+#define OFFWIHTE  11

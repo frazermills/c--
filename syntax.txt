@@ -1,5 +1,6 @@
 Syntax for language goes here
 
+
 - variable declaration (haven't decided whether type inferred or not)
 - for loops
 - if statements including else (similar if else as in c)
