@@ -80,6 +80,25 @@ std::array<std::array<int, 80>, 1000> ZeroArray(std::array<std::array<int, 80>, 
 
     return arr;
 }
+
+std::string GetStringInput(){
+    wmove(winmain, maxLines-1,0);
+    echo();
+    wprintw(winmain, "Enter file name: ");
+    std::string input;
+
+    int ch = getch();
+
+    while ( ch != '\n' )
+    {
+        input.push_back(ch);
+        ch = getch();
+    }
+    noecho();
+
+    return input;
+}
+
 std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1000> text){
     text = ZeroArray(text);
 
@@ -89,7 +108,10 @@ std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1
     yPos = 0;
     line = 1;
 
-    std::ifstream CodeFile("ex.txt");
+    std::string fileName = GetStringInput();
+
+    std::ifstream CodeFile(fileName);
+
     while (getline(CodeFile, codeLine))
     {
         xPos = 0;
@@ -119,6 +141,7 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
         return text;
 
     if(c == '`'){
+        firstJ = true;
         insert = !insert;
     }
     else if(insert){
@@ -189,7 +212,14 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             xPos--;
             break;
         case 'j':
-            yPos++;
+            yPos += 1;
+            if(text[yPos][0] == '@'){
+                text[yPos++][xPos] = '\n';
+                line++;
+                xPos = 0;
+                text = PadLine(text);
+            }
+            firstJ = false;
             break;
         case 'k':
             yPos--;
@@ -200,13 +230,6 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
         default:
             break;
         }
-        
-        if(xPos < leftPad)
-            xPos = leftPad;
-        if(yPos <= 0)
-            yPos = 0;
-        if(yPos >= line - 1)
-            yPos = line - 1;
     }
 
     return text;

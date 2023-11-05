@@ -14,6 +14,7 @@ int frame;
 int leftPad;
 int charactorPos;
 bool insert;
+bool firstJ;
 
 #define BLACK   9
 #define YELLOW  10
