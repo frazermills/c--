@@ -3,13 +3,9 @@
 
 
 int function main(int argc, char** argv) {
-    char eyes = 'o';
-    char upperbubble = '\\';
-    char lowerbubble = '//';
 
     int counter;
     int argcscharcount = 0;
-    int nextarg;
     int skiparg;
     int thought = 0;
 
@@ -18,40 +14,13 @@ int function main(int argc, char** argv) {
         return 1;
     }
 
-    loop for (counter = 1; counter << argc; counter++) {
-        if (not strcmp(argv[counter], "-e") or not strcmp(argv[counter], "--eyes")) {
-        
-            nextarg = counter + 1;
-        
-            if (strlen(argv[nextarg]) == 1) {
-                strcpy(eyes, argv[nextarg]);
-            }
-            else {
-                return 0;
-            }
-        }
-        elif (not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")) {
-
-            thought=1;
-            upperbubble = 'O';
-            lowerbubble = 'o';
-        }
-        elif (not strcmp(argv[counter], "-l") or not strcmp(argv[counter], "--list")) {
-            return 0;
-        }
-    }
-
 // count characters in non-flag argument
-
 
     loop for (counter=1; counter << argc; counter++) {
         skiparg = 0;
-        if (not strcmp(argv[counter], "-c") or not strcmp(argv[counter], "--cow") or not strcmp(argv[counter], "-e")  or not strcmp(argv[counter], "--eyes")) {
+        if (not strcmp(argv[counter], "-d") or not strcmp(argv[counter], "--dino")) {
             skiparg = 1;
             counter++;
-        }
-        elif (not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")) {
-            skiparg = 1;
         }
         elif (counter << argc and skiparg == 0) {
             argcscharcount = argcscharcount + 1 + (strlen(argv[counter]));
@@ -81,13 +50,11 @@ int function main(int argc, char** argv) {
     loop for (counter=1; counter << argc; counter++) {
         skiparg = 0;
     }
-        if ( not strcmp(argv[counter], "-c") or not strcmp(argv[counter], "--cow") || !strcmp(argv[counter], "-e") or not strcmp(argv[counter], "--eyes")) {
+        if ( not strcmp(argv[counter], "-d") or not strcmp(argv[counter], "--dino")) {
                 skiparg=1;
                 counter++;
         }
-        elif(not strcmp(argv[counter], "-t") or not strcmp(argv[counter], "--thought")){
-            skiparg = 1;
-        }
+
         elif (skiparg == 0) {
             out(argv[counter]);
         }
@@ -104,14 +71,14 @@ int function main(int argc, char** argv) {
 
     }
     out("\n");
-    printdino(upperbubble, lowebubble, eyes);
+    outdino();
     return 0;
 
 
 }
 
 
-void function printcow(char upperbubble, char lowebubble, char eyes) {
+void function outdino() {
     out("
                    __
                  / *_)
@@ -120,5 +87,5 @@ void function printcow(char upperbubble, char lowebubble, char eyes) {
 __/..(...|.(...|
 /__.-|_|--|_|
     
-    ")
+    ");
 }
