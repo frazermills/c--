@@ -133,6 +133,7 @@ void ExcuteCode(std::string str, std::array<std::array<int, 80>, 1000> text){
 
         getch();
     }
+
 }
 
 std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1000> text){
@@ -240,9 +241,11 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             
             // more checks needed
             break;
+
         case 11:
             ExcuteCode(GetStringInput() ,text);
             break;
+
         case 12:
             // open file
             text = OpenFile(text);
