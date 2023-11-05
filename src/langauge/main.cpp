@@ -23,6 +23,7 @@ std::string read_file(std::string file_name)
 
 int main(int argc, char **argv) {
     std::string input = read_file(argv[1]);
+  
     Token tok;
 
     do {
