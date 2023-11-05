@@ -34,6 +34,11 @@ const TokenType FALSE = "FALSE";
 const TokenType IF = "IF";
 const TokenType ELSE = "ELSE";
 const TokenType RETURN = "RETURN";
+const TokenType FOR = "FOR";
+const TokenType LOOP = "LOOP";
+const TokenType JUMP = "JUMP";
+const TokenType BREAK = "BREAK";
+const TokenType CONTINUE = "CONTINUE";
 
 
 
