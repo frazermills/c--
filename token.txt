@@ -1,1 +1,17 @@
+Type: IDENT, Literal: function
+Type: IDENT, Literal: add
+Type: (, Literal: (
+Type: IDENT, Literal: int
+Type: IDENT, Literal: x
+Type: ,, Literal: ,
+Type: IDENT, Literal: int
+Type: IDENT, Literal: y
+Type: ), Literal: )
+Type: {, Literal: {
+Type: RETURN, Literal: return
+Type: IDENT, Literal: x
+Type: +, Literal: +
+Type: IDENT, Literal: y
+Type: ;, Literal: ;
+Type: }, Literal: }
 Type: EOF, Literal: 

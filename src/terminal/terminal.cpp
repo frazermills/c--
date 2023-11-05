@@ -75,9 +75,9 @@ std::string GetStringInput(){
 
 void SaveToFile(std::array<std::array<int, 80>, 1000> text){
 
-    std::string fileName = GetStringInput();
+    //std::string fileName = GetStringInput();
 
-    std::ofstream File(fileName, std::ios::out| std::ios::binary);
+    std::ofstream File("build.cmm", std::ios::out| std::ios::binary);
     
     int index = 0;
     int lines = 0;
@@ -121,17 +121,55 @@ void ExcuteCode(std::string str, std::array<std::array<int, 80>, 1000> text){
 
     SaveToFile(text);
 
+    system("./lexer_test build.cmm");
+
+    std::ifstream CodeFile("token.txt");
+    std::string tokens;
+    std::string strline;
+
+    while (getline(CodeFile, strline))
+    {
+        for(auto c : strline){
+            tokens.push_back(c);
+        }
+        tokens.push_back('\n');
+    }
     // DRAW VERTICAL BOX
     while(true){
+        wmove(winmain, 0, 0);
+        int newLines = 0;
+        int diff = line - maxLines;
+        int linesPrinted = 0;
+        int charCount = 0;
+        for(auto charLine : text){
+            if(diff > 0){
+                diff--;
+            }else{
+                for(int displayC : charLine){
+                    if(displayC != '@' && displayC != '$')
+                        wprintw(winmain, "%c", displayC);
+                }
+            }
+        }
+
+
         for(int y = 0 ; y < maxLines; y++){
-            wmove(winmain, y, (col - col / 4) - 1);
+            wmove(winmain, y, (col - col / 3) - 1);
             wprintw(winmain, "|");
         }
-        wmove(winmain, 0, (col - col / 4));
-
+        wmove(winmain, 0, (col - col / 3) + 1);
+        int linecountercounter = 0;
         // Read output file and display here
+        for(auto c : tokens){
+            wprintw(winmain, "%c", c);
+            if(c == 10){
+                linecountercounter++;
+                wmove(winmain, linecountercounter, (col - col / 3) + 1);
+            }
+        }
 
-        getch();
+        if(getch() == 10)
+            break;
     }
 
 }
