@@ -10,7 +10,6 @@ using TokenType = std::string;
 const TokenType ILLEGAL = "ILLEGAL";
 const TokenType EOF_TOKEN = "EOF";
 const TokenType IDENT = "IDENT";
-const TokenType INT = "INT";
 const TokenType ASSIGN = "=";
 const TokenType PLUS = "+";
 const TokenType MINUS = "-";
@@ -39,8 +38,16 @@ const TokenType LOOP = "LOOP";
 const TokenType JUMP = "JUMP";
 const TokenType BREAK = "BREAK";
 const TokenType CONTINUE = "CONTINUE";
-
-
+const TokenType AND = "AND";
+const TokenType OR = "OR";
+const TokenType NOT = "NOT";
+const TokenType INT = "<DATATYPE>INT";
+const TokenType STRING = "<DATATYPE>STRING";
+const TokenType CHAR = "<DATATYPE>CHAR";
+const TokenType BOOL = "<DATATYPE>BOOL";
+const TokenType STR_WRAP = "STR_WRAP";
+const TokenType CHAR_WRAP = "CHAR_WRAP";
+const TokenType OUT = "<BUILTIN_FUNC_OUT>";
 
 typedef std::string TokenType;
 

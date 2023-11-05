@@ -158,6 +158,11 @@ int function main (){
     out("10 modulus 2 is: ", sum);
     out("\n");
 
+    sum = ten * numTest2;
+    out("Ten multiplied by 2 is: ", sum);
+    out("\n");
+
+
     out("Assignment Operator Tests Complete");
     out("\n");
 

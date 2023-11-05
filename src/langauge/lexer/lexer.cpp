@@ -100,9 +100,9 @@ Token NextToken(const std::string& input) {
             }
             tok.Literal = literal;
             TokenType keyword = "";
-            if (literal == "fn") {
+            if (literal == "function") {
                 keyword = FUNCTION;
-            } else if (literal == "let") {
+            } else if (literal == "auto") {
                 keyword = LET;
             } else if (literal == "true") {
                 keyword = TRUE;
@@ -114,6 +114,34 @@ Token NextToken(const std::string& input) {
                 keyword = ELSE;
             } else if (literal == "return") {
                 keyword = RETURN;
+            } else if (literal == "out") {
+                keyword = OUT;
+            } else if (literal == "for") {
+                keyword = FOR;
+            } else if (literal == "loop") {
+                keyword = LOOP;
+            } else if (literal == "and") {
+                keyword = AND;
+            } else if (literal == "or") {
+                keyword = OR;
+            } else if (literal == "not") {
+                keyword = NOT;
+            } else if (literal == "conintue") {
+                keyword = CONTINUE;
+            } else if (literal == "break") {
+                keyword = BREAK;
+            } else if (literal == "jumpto") {
+                keyword = JUMP;
+            } else if (literal == "\"") {
+                keyword = STR_WRAP;
+            } else if (literal == "\'") {
+                keyword = CHAR_WRAP;
+            } else if (literal == "int") {
+                keyword = INT;
+            } else if (literal == "string") {
+                keyword = STRING;
+            } else if (literal == "char") {
+                keyword = CHAR;
             }
             if (keyword != "") {
                 tok.Type = keyword;
