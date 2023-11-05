@@ -44,7 +44,6 @@ void CleanUp(){
 
 std::string GetStringInput(){
     wmove(winmain, maxLines-1,0);
-    wprintw(winmain, "Enter file name: ");
     std::string input;
 
     int ch = getch();
