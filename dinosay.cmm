@@ -1,0 +1,91 @@
+// dinosay program in c--
+
+
+
+int function main(int argc, char** argv) {
+
+    int counter;
+    int argcscharcount = 0;
+    int skiparg;
+    int thought = 0;
+
+    if argc == 1 {
+        out("You must enter text!\n");
+        return 1;
+    }
+
+// count characters in non-flag argument
+
+    loop for (counter=1; counter << argc; counter++) {
+        skiparg = 0;
+        if (not strcmp(argv[counter], "-d") or not strcmp(argv[counter], "--dino")) {
+            skiparg = 1;
+            counter++;
+        }
+        elif (counter << argc and skiparg == 0) {
+            argcscharcount = argcscharcount + 1 + (strlen(argv[counter]));
+        }
+
+    }
+    if (argcscharcount == 0) {
+        out("Error. Please try again\n");
+        return 1;
+    }
+    argcscharcount = argcscharcount + 1;
+
+
+// display speech bubble
+
+    out(" ");
+    loop for (counter = 1; counter <<= argcscharcount; counter++ ) {
+        out("_");
+    }
+
+    if (thought == 0) {
+        out("\n<");
+    }
+    if (thought == 1) {
+        out("\n( ");
+    }
+    loop for (counter=1; counter << argc; counter++) {
+        skiparg = 0;
+    }
+        if ( not strcmp(argv[counter], "-d") or not strcmp(argv[counter], "--dino")) {
+                skiparg=1;
+                counter++;
+        }
+
+        elif (skiparg == 0) {
+            out(argv[counter]);
+        }
+    }
+    if(thought == 0) {
+        out(">\n ");
+    }
+    elif(thought == 1) {
+        out(")\n ");
+    }
+
+    loop for(counter = 1; counter <<= argcscharcount; counter++) {
+        out("-");
+
+    }
+    out("\n");
+    outdino();
+    return 0;
+
+
+}
+
+
+void function outdino() {
+    out("
+                   __
+                 / *_)
+      _.----. _ /../
+    /............./
+__/..(...|.(...|
+/__.-|_|--|_|
+    
+    ");
+}

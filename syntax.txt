@@ -1,5 +1,187 @@
-This is a test of the of git
-
 Syntax for language goes here
 
-test 123 Hayden
+
+- variable declaration (haven't decided whether type inferred or not)
+- for loops
+- if statements including else (similar if else as in c)
+- functions (will probably leave them as a single type so not like in c where you have to specify the return type, idk I don't mind depends if I'm doing type inferred variables for consistency sake)
+- arrays
+- ints, floats, chars (stored as ints but evaluated runtime maybe?), perhaps strings as a separate data type (probably treated as char arrays with '\0' at end)
+
+- probably leave pointers out, if I can't figure out how to implement them/don't have time
+any other features are welcome, and I don't mind about the exact syntax if anyone wants to be creative with it
+also:
+
+ - 'built in' functions that will map to some c ones from stdio, stdlib etc  (i.e. if we have a 'print' it will map to 'printf' and have the same behaviour as that)
+    given a large part of the program will the be repl environment thing, it will be quicker and easier to write it as an interpreter
+
+
+examples: how should it look?
+
+
+
+declaring variables:
+
+datatype variable; 
+    int name;
+        int name = value;
+    float name;
+        float name = value;
+    char name;
+        char name = 'value';
+    string name;
+        string name = "value";
+
+
+if statements (might need brackets)
+
+
+if condition { }
+elif condition{ }
+else { }
+
+example
+    int x = 10
+    int y = 5
+    if x - y == 5
+    {
+        out(5)
+    }
+    else
+    {
+        out("not 5")
+    }
+
+
+
+
+
+print statmements:
+
+out("hello world")
+
+with variables
+    string world = "world"
+    out("hello", world)
+
+with new line \n
+    out("hello world \n")
+
+
+    out("hello world")
+
+
+loops (only using for)
+
+loop for condition { }
+e.g. 
+    loop for (int i = 0; i < 10; i++)
+    {
+        out("i is ", i)
+    }
+
+
+
+functions
+
+datatype function functionname(args)
+{
+    return returnvalue;
+}
+
+example 
+int function main () {
+    ; cool stuff
+    return 0;
+}
+
+
+
+calling function (probably not having declarations, see if we have time at the end)
+
+functionname(data type, args);
+e.g.
+    add(int num1, int);
+
+
+
+
+goto statements (if this doesnt work can just use 'jump')
+
+jump-to label;
+label:
+    // statements
+
+
+if condition {
+    jump-to one }
+else {
+    jump-to two  }
+
+one:
+    out("one")
+two:
+    out("two")
+
+
+
+
+break statement (if this doesn't work just 'break')
+jump-break;
+
+
+continue statmement
+jump-continue;
+
+
+
+
+
+operations
+    + add
+    ++ incrament
+    - subtract
+    -- decrement
+    = equals
+    == equilivent 
+    / divide
+    \\ modulus
+    * multiplication
+
+
+assignment operators
+    = equals
+        a = b
+    += add 
+        a += b      ==  a = a + b
+    -= subtract 
+        a -= b      ==  a = a - b
+   -= multiply 
+        a *= b      ==  a = a * b  
+     /= divide       
+        a /= b      ==  a = a / b   
+    \\= modulus
+        a \\= b     == a = a \\ b
+
+
+relational operators
+    << less than
+        a << b
+    >> more than 
+        a >> b
+    != not equal
+        a != b
+    >>= greater than or equal to
+        a >>= b
+    <<= less than or equal to  
+        a <<= b
+
+
+logical operators (self-explanatory)
+    and 
+        a >> 0 and b >> 0
+    or
+        a >> 0 or b >> 0
+    not 
+        not a
+        
