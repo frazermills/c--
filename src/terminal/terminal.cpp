@@ -121,19 +121,31 @@ void ExcuteCode(std::string str, std::array<std::array<int, 80>, 1000> text){
 
     SaveToFile(text);
 
-    system("./lexer_test build.cmm");
+    system("./lex_test build.cmm");
 
-    std::ifstream CodeFile("token.txt");
+    std::ifstream TokenFile("token.txt");
     std::string tokens;
     std::string strline;
 
-    while (getline(CodeFile, strline))
+    while (getline(TokenFile, strline))
     {
         for(auto c : strline){
             tokens.push_back(c);
         }
         tokens.push_back('\n');
     }
+
+    std::ifstream ASTFile("ast.txt");
+    std::string ast;
+
+    while (getline(ASTFile, strline))
+    {
+        for(auto c : strline){
+            ast.push_back(c);
+        }
+        ast.push_back('\n');
+    }
+
     // DRAW VERTICAL BOX
     while(true){
         wmove(winmain, 0, 0);

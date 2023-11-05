@@ -3,3 +3,8 @@ src/terminal/code.txt
 .vscode/settings.json
 src/terminal/ex.txt
 src/terminal/test
+a.out
+build.cmm
+lex_test
+lexer_test
+token.txt
