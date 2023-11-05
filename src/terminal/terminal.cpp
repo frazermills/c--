@@ -281,7 +281,7 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             break;
 
         case 11:
-            ExcuteCode(GetStringInput() ,text);
+            ExcuteCode("" ,text);
             break;
 
         case 12:
