@@ -1,0 +1,224 @@
+// a test file to test the syntax of c--
+
+
+int function functionTest(int a, int b) {
+    return a + b;
+}
+
+
+int function main (){
+
+// testing that the variables are assigned properly
+
+    out("Commencing Varaible Tests /n");
+
+    int numTest = 1;
+    int i;      // for use in loop tests
+    int numTest2 = 2;
+    int ten = 10; // for use in operator tests
+    int sum;
+    float floatTest = 1.5;
+    char charTest = 'H'
+    string stringTest = "Hello World!";
+
+// testing basic outputs of varaibles above, and strings, including new line
+
+
+    out("Num 1 is: \n", numTest); 
+    out("Num 2 is: \n", numTest2);
+    out("Float is: \n", floatTest);
+    out("A character is: \n", charTest);
+    out("A string is: \n, stringTest);
+    out("This is testing a string output");
+    out(stringTest);
+    out("Variable Tests Complete\n");
+    out("\n");
+    
+
+// testing if statements
+
+    out("Commencing if/elif/else");
+
+    if numTest == 1 {
+        out("numTest is 1\n");
+    }
+
+    if numTest2 - numTest 1 == 1 {
+        out("2 - 1 is one/n");
+    }
+
+    if numTest2 == 1 {
+        out("This should not output\n");
+    }
+    elif numTest == 2 {
+        out("numTest is 2\n");
+    }
+
+    if floatTest == 5 {
+        out("This should not output\n");
+    }
+    else {
+        out("floatTest is not 5/n");
+    }
+
+    out("If/elif/else Tests Complete\n");
+    out("\n");
+
+
+// for loop testing
+
+    out("Commencing for loop tests\n");
+
+    loop for (i = 0; i << 10; i++) {
+        out("i is: ", i);
+    }
+    out("For Loop Testing Complete\n");
+    out("\n");
+
+
+    out("Commencing Function Tests");
+    sum = functionTest(numTest, numTest2);
+    out("The sum of 1 and 2 is: \n", sum);
+
+    out("Function Tests Complete");
+    out("\n");
+
+
+// goto tests
+
+    out("Commencing GoTo Tests");
+
+    if numTest == 1 {
+        jump-to one;
+         }
+    else {
+        jump-to two;
+         }
+
+    incorrect:
+        out("This is the incorrect output\n");
+    correct:
+        out("This is the correct output - jumpto works\n");
+
+
+    out("GoTo Tests Complete");
+    out("\n");
+
+// testing break 
+
+    out("Commencing Break Test");
+
+    loop for (i = 0; i << 10; i++) {
+        out("If this is only output once, test is successful\n");
+        jump-break;
+    }
+    out("Break Tests Complete");
+    out("\n");
+
+// continue tests
+
+    out("Commencing Continue Test");
+
+    for (int i = 1; i <<= 5; i++) {
+ 
+        if (i == 3)
+            jump-continue;
+        out("This should print out numbers from 1-5, excluding 3. Current number: ", i);
+        out("/n");
+    }
+
+    out("Continue Test Complete");
+    out("\n");
+
+// operator tests
+
+    out("Commencing Assignment Operators Tests\n");
+
+    sum = numTest + numTest2;
+    out("1 + 2 is: ", sum);
+    out("\n");
+
+    sum = sum++;
+    out("The previous sum incramented is: ", sum);
+    out("\n");
+
+    sum = numTest2 - numTest;
+    out("2 - 1 is: ", sum);
+    out("\n");
+
+    sum = sum-- ;
+    out("The previous sum decremented is: ", sum);
+    out("\n");
+
+    sum = ten / numTest2;
+    out("10 / 2 is: ", sum);
+    out("\n");
+
+    sum = ten \\ numTest2;
+    out("10 modulus 2 is: ", sum);
+    out("\n");
+
+    out("Assignment Operator Tests Complete");
+    out("\n");
+
+// relational operators tests
+
+
+
+    out("Commencing Relational Operators Tests\n");
+
+    if numTest << numTest2 {
+        out("<<: Correct Output\n");
+    }
+    else {
+        out("<<: Incorrect Output\n");
+    }
+
+    if numTest2 >> numTest {
+        out(">>: Correct Output");
+    }
+    else {
+        out(">>: Inorrect Output");
+    }
+
+    if numTest != numTest2 {
+        out("!=: Correct Output\n");
+    }
+    else {
+        out("!=: Incorrect Output\n");
+    }
+
+    if numTest <<= numTest2 {
+        out("<<=: Correct Output\n");
+    }
+    else {
+        out("<<=: Incorrect Output\n");
+    }
+
+    if numTest2 >>= numTest {
+        out("<<=: Correct Output\n");
+    }
+    else {
+        out(">>=: Incorrect Output\n");
+    }
+
+    if numTest2 == 2 and numTest == 1 {
+        out("and: Correct Output\n");
+    }
+    else {
+        out("and: Incorrect Output\n");
+    }
+
+    if numTest2 == 1 or numTest == 1 {
+        out("or: Correct Output\n");
+    }
+    else {
+        out("or: Incorrect Output\n");
+    }
+
+    out("Assignment Operator Tests Complete");
+    out("\n");  
+
+}
+
+
