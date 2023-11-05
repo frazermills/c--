@@ -2,13 +2,15 @@
 #include <string>
 // nicola you can change these here for the keywords
 std::unordered_map<std::string, TokenType> language_keywords = {
-    {"fn", FUNCTION},
-    {"let", LET},
+    {"function", FUNCTION},
+    {"auto", LET},
     {"true", TRUE},
     {"false", FALSE},
     {"if", IF},
     {"else", ELSE},
-    {"return", RETURN}
+    {"return", RETURN},
+    {"for", FOR},
+    {"loop", LOOP}
 };
 
 // Define TokenType as a string alias

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "lexer/token.h"
 #include "lexer/lexer.h"
+#include "parser/ast.h"
 
 int main(int argc, char **argv) {
     std::string input = "fn test (int a, char c);";
