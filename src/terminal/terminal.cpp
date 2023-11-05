@@ -7,6 +7,8 @@
 #include <string>
 #include <math.h>
 
+// TO RUN INSTALL NCURSES
+// THEN DO g++ terminal.cpp -lncurses -I . && ./a.out
 
 void init(){
     winmain = initscr();
@@ -115,18 +117,22 @@ std::array<std::array<int, 80>, 1000> ZeroArray(std::array<std::array<int, 80>, 
     return arr;
 }
 
+void ExcuteCode(std::string str, std::array<std::array<int, 80>, 1000> text){
 
-
-void ExcuteCode(std::string str){
+    SaveToFile(text);
 
     // DRAW VERTICAL BOX
+    while(true){
+        for(int y = 0 ; y < maxLines; y++){
+            wmove(winmain, y, (col - col / 4) - 1);
+            wprintw(winmain, "|");
+        }
+        wmove(winmain, 0, (col - col / 4));
 
-    for(int y = 0 ; y < maxLines; y++){
-        wmove(winmain, y, (col - col / 4) - 1);
-        wprintw(winmain, "|");
+        // Read output file and display here
 
+        getch();
     }
-
 }
 
 std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1000> text){
@@ -234,6 +240,9 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             
             // more checks needed
             break;
+        case 11:
+            ExcuteCode(GetStringInput() ,text);
+            break;
         case 12:
             // open file
             text = OpenFile(text);
@@ -305,7 +314,6 @@ int main(int argc, char **argv)
             }
         }
 
-        ExcuteCode("TEMP");
         wmove(winmain, yPos, xPos-1);
 
 
