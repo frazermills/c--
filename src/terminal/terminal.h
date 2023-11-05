@@ -13,6 +13,8 @@ int maxLines;
 int frame;
 int leftPad;
 int charactorPos;
+int row,col;
+int MaxLineLength;
 bool insert;
 bool firstJ;
 bool firstk;

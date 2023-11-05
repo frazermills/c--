@@ -7,11 +7,14 @@
 #include <string>
 #include <math.h>
 
+
 void init(){
     winmain = initscr();
     line = 1;
     int row,col;
     getmaxyx(winmain, row, col);
+
+    MaxLineLength = col - (col / 4) - 4;
     maxLines = row;
     insert = true;
     frame = 0;
@@ -38,8 +41,42 @@ void CleanUp(){
     endwin();
 }
 
+
+std::string GetStringInput(){
+    wmove(winmain, maxLines-1,0);
+    wprintw(winmain, "Enter file name: ");
+    std::string input;
+
+    int ch = getch();
+
+    while (ch != '\n')
+    {
+        refresh();
+        wrefresh(winmain);
+        wclear(winmain);
+
+        wmove(winmain, maxLines-1,0);
+        if(ch == 263 && input.length() > 0)
+            input.pop_back();
+        else if(ch != 263)
+            input.push_back(ch);
+
+        wprintw(winmain, "Enter file name: ");
+
+        for(auto c : input)
+            wprintw(winmain, "%c", c);
+
+        ch = getch();
+    }
+
+    return input;
+}
+
 void SaveToFile(std::array<std::array<int, 80>, 1000> text){
-    std::ofstream File("code.txt", std::ios::out| std::ios::binary);
+
+    std::string fileName = GetStringInput();
+
+    std::ofstream File(fileName, std::ios::out| std::ios::binary);
     
     int index = 0;
     int lines = 0;
@@ -79,22 +116,18 @@ std::array<std::array<int, 80>, 1000> ZeroArray(std::array<std::array<int, 80>, 
     return arr;
 }
 
-std::string GetStringInput(){
-    wmove(winmain, maxLines-1,0);
-    echo();
-    wprintw(winmain, "Enter file name: ");
-    std::string input;
 
-    int ch = getch();
 
-    while ( ch != '\n' )
-    {
-        input.push_back(ch);
-        ch = getch();
+void ExcuteCode(std::string str){
+
+    // DRAW VERTICAL BOX
+
+    for(int y = 0 ; y < maxLines; y++){
+        wmove(winmain, y, (col - col / 4) - 1);
+        wprintw(winmain, "|");
+
     }
-    noecho();
 
-    return input;
 }
 
 std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1000> text){
@@ -135,13 +168,41 @@ std::array<std::array<int, 80>, 1000> OpenFile(std::array<std::array<int, 80>, 1
 std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>, 1000> text, int c){
     // TODO: make not physicaly painful to look at
     int lastX = xPos - 1;
-    if(c < 10)
+    if(c < 8)
         return text;
 
-    if(c == '`'){
+    else if(c == '`'){
         firstJ = true;
         firstk = true;
         insert = !insert;
+    }
+    else if(!insert){
+        switch (c)
+        {
+        case 'h':
+            xPos--;
+            break;
+        case 'j':
+            if(text[yPos][0] == '@'){
+                yPos--;
+                text[yPos++][xPos] = '\n';
+                line++;
+                xPos = 0;
+                text = PadLine(text);
+            }else{
+                yPos += 1;
+            }
+            firstJ = false;
+            break;
+        case 'k':
+            yPos--;
+            break;
+        case 'l':
+            xPos++;
+            break;
+        default:
+            break;
+        }
     }
     else if(insert){
         switch (c)
@@ -199,34 +260,8 @@ std::array<std::array<int, 80>, 1000> HandleInput(std::array<std::array<int, 80>
             break;
         
         default:
-            text[yPos][xPos++] = c;
-            break;
-        }
-    }else{
-        switch (c)
-        {
-        case 'h':
-            xPos--;
-            break;
-        case 'j':
-            if(text[yPos][0] == '@'){
-                yPos--;
-                text[yPos++][xPos] = '\n';
-                line++;
-                xPos = 0;
-                text = PadLine(text);
-            }else{
-                yPos += 1;
-            }
-            firstJ = false;
-            break;
-        case 'k':
-            yPos--;
-            break;
-        case 'l':
-            xPos++;
-            break;
-        default:
+            if(xPos < MaxLineLength)
+                text[yPos][xPos++] = c;
             break;
         }
     }
@@ -251,7 +286,6 @@ int main(int argc, char **argv)
         wclear(winmain);
 
 
-        int row,col;
         getmaxyx(winmain, row, col);
         maxLines = row;
 
@@ -260,19 +294,19 @@ int main(int argc, char **argv)
         int linesPrinted = 0;
         int charCount = 0;
 
-
+        wmove(winmain, 0, 0);
         for(auto charLine : text){
-
-            for(int c : charLine){
-                if(diff > 0){
-                    diff--;
-                    break;
+            if(diff > 0){
+                diff--;
+            }else{
+                for(int c : charLine){
+                    if(c != '@' && c != '$')
+                        wprintw(winmain, "%c", c);
                 }
-
-                if(c != '@' && c != '$')
-                    wprintw(winmain, "%c", c);
             }
         }
+
+        ExcuteCode("TEMP");
         wmove(winmain, yPos, xPos-1);
 
 
