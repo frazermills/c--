@@ -2,7 +2,7 @@
 
 
 
-int main(int argc, char** argv) {
+int function main(int argc, char** argv) {
     char eyes = 'o';
     char upperbubble = '\\';
     char lowerbubble = '//';

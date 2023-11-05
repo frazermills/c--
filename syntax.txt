@@ -107,15 +107,15 @@ e.g.
 
 goto statements (if this doesnt work can just use 'jump')
 
-jump-goto label;
+jump-to label;
 label:
     // statements
 
 
 if condition {
-    jump-goto one }
+    jump-to one }
 else {
-    jump-goto two  }
+    jump-to two  }
 
 one:
     out("one")
