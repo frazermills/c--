@@ -1,4 +1,6 @@
 function test (int a, char c)
 {
+    out "hello test";
+    out 'h';
     return false;
 }
