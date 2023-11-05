@@ -29,7 +29,6 @@ int main(int argc, char **argv) {
 
     do {
         tok = NextToken(input);
-        std::cout << "Type: " << tok.Type << ", Literal: " << tok.Literal << std::endl;
         File << "Type: " << tok.Type << ", Literal: " << tok.Literal << std::endl;
     } while (tok.Type != EOF_TOKEN);
 
